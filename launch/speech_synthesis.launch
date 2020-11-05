@@ -1,0 +1,10 @@
+<launch>
+  <group ns="rero_speech_synthesis">
+
+    <param name="loop_rate" value="10" />
+    <node pkg="rero_speech_synthesis" name="speech_synthesis" type="speech_synthesis.py" output="screen">
+    	<param name="topic_name" value="speech_synthesis" />
+    </node>
+    
+  </group>
+</launch>

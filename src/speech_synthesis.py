@@ -6,6 +6,8 @@ from std_msgs.msg import String
 import numpy as np
 from time import sleep
 import subprocess
+from espeakng import ESpeakNG
+
 
 rospy.init_node('ros_tts_node', anonymous=True)
 
@@ -17,14 +19,13 @@ rospy.loginfo("%s is %s", rospy.resolve_name('loop_rate'), loop_rate)
 
 rate = rospy.Rate(loop_rate)  # 10hz
 
+esng = ESpeakNG(voice='en')
+esng.pitch = 32
+esng.speed = 150
+
 def callback(data):
 	print(data)
-
-	process = subprocess.run(args=['mimic', '-t',  str(data.data)], 
-                         stdout=subprocess.PIPE, 
-                         universal_newlines=True)
-
-
+	esng.say(data.data)
 
 rospy.Subscriber(tts_topic_name, String, callback)
 
