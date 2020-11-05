@@ -1,7 +1,16 @@
 <launch>
+  <arg default="32" name="pitch" />
+  <arg default="150" name="speed" />
+  <arg default="en" name="voice" />
+
   <group ns="rero_speech_synthesis">
 
+    <param name="pitch" value="$(arg pitch)" />
+    <param name="speed" value="$(arg speed)" />
+    <param name="voice" value="$(arg voice)" />
+
     <param name="loop_rate" value="10" />
+
     <node pkg="rero_speech_synthesis" name="speech_synthesis" type="speech_synthesis.py" output="screen">
     	<param name="topic_name" value="speech_synthesis" />
     </node>
